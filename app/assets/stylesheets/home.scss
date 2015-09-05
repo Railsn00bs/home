@@ -12,3 +12,29 @@ body {
 .navigation-link {
   margin: 7px;
 }
+
+.upcoming {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  padding: 20px;
+  margin: 10px;
+
+  background: #639;
+  color: white;
+  border-radius: 10px;
+
+  .title {
+    font-size: 1.3em;
+    margin: 8px;
+  }
+
+  a:link {
+    color: white;
+  }
+
+  a:visited {
+    color: lighten(#639, 30%)
+  }
+}

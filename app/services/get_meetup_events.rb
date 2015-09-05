@@ -23,9 +23,10 @@ class GetMeetupEvents
       :meetup_event_id => event_json['id'],
       :name => event_json["name"],
       :description => event_json["description"],
-      :start_at => Time.at(event_json["time"].to_i).to_datetime,
+      :start_at => Time.at(event_json["time"].to_i / 1000).to_datetime,
       :venue_name => event_json["group"]["name"],
-      :status => event_json["status"]
+      :status => event_json["status"],
+      :url => event_json["event_url"]
     )
   end
 

@@ -16,7 +16,6 @@
   %>
 </div>
 
-
 <div class="navigation-link">
   <%= link_to(
     'Check out the Railn00bs community projects',
@@ -25,12 +24,24 @@
   %>
 </div>
 
-
-
 <div class="navigation-link">
   <%= link_to(
     'Check out the Railsn00bs github',
     'https://github.com/Railsn00bs'
     )
   %>
+</div>
+
+<div class="upcoming">
+  <div class="title">Upcoming Events</div>
+
+  <% @events.each do |event| %>
+    <div>
+      <%= link_to(
+          event_display_name(event),
+          event.url
+        )
+      %>
+    <div>
+  <% end %>
 </div>
