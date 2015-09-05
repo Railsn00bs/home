@@ -3,13 +3,34 @@ require 'net/http'
 class GetMeetupEvents
   def call
     events = get_events_from_meetup
-    binding.pry
+
+    events.each do |event|
+      add_or_update_event_in_database(event)
+    end
+
+    Event.all
   end
 
   private
 
+  def add_or_update_event_in_database(event_json)
+    # TODO - less bad, and store duration instead of end_at
+
+    event = Event.find_by(:meetup_event_id => event_json['id'])
+    event ||= Event.new
+
+    event.update!(
+      :meetup_event_id => event_json['id'],
+      :name => event_json["name"],
+      :description => event_json["description"],
+      :start_at => Time.at(event_json["time"].to_i).to_datetime,
+      :venue_name => event_json["group"]["name"],
+      :status => event_json["status"]
+    )
+  end
+
   def get_events_from_meetup
-    Net::HTTP.get(meetup_api_call)
+    JSON.parse(Net::HTTP.get(meetup_api_call))['results']
   end
 
   def meetup_api_call
@@ -20,4 +41,3 @@ class GetMeetupEvents
     ENV.fetch('MEETUP_API_KEY')
   end
 end
-
