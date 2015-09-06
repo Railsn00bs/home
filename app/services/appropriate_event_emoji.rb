@@ -11,7 +11,7 @@ class AppropriateEventEmoji
   def classifier
     return @range_classifier if @range_classifier
 
-    projection = -> (e, base_time) { [base_time - e.start_at, base_time - e.effective_end_at ] }
+    projection = -> (e, base_time) { [base_time - e.start_at, base_time - e.end_at ] }
     upcoming = [
       [-10.days, '😞'],
       [-4.days, '😐'],
@@ -29,12 +29,12 @@ class AppropriateEventEmoji
       },
       {
         lower: [0, nil],
-        upper: [0, 3.hours],
+        upper: [0, Event::DURATION],
         result: '😪',
       },
       {
         lower: [0, nil],
-        upper: [3.hours, nil],
+        upper: [Event::DURATION, nil],
         result: '😴'
       }
     ]
