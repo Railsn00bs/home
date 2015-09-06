@@ -35,6 +35,11 @@
 <div class="upcoming">
   <div class="title">Events</div>
 
+  <% if @events.empty? %>
+      No events scheduled 😿
+    </div>
+  <% end %>
+
   <% @events.each do |event| %>
     <div>
       <%= link_to(
