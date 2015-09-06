@@ -38,7 +38,7 @@
   <% @events.each do |event| %>
     <div>
       <%= link_to(
-          event_display_name(event),
+          event_line(event, @classifier),
           event.url
         )
       %>

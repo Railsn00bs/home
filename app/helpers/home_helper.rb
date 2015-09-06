@@ -1,12 +1,13 @@
 module HomeHelper
-  def event_display_name(event)
-    display_name = event.name
+  def event_line(event, classifier)
+    event_line = event.name
 
     if event.start_at.present?
-      time_in_words = distance_of_time_in_words(Time.now, event.start_at)
-      display_name += " - #{time_in_words} away"
+      time_in_words = time_ago_in_words(event.start_at)
+      time_tail = event.start_at > Time.now ? "away" : "ago"
+      event_line += " - #{time_in_words} #{time_tail} " + classifier.call(event)
     end
 
-    display_name
+    event_line
   end
 end
