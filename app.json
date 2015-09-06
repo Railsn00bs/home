@@ -1,0 +1,30 @@
+{
+  "name":"home",
+  "description":"",
+  "scripts":{
+    "postdeploy":"rake db:migrate && rake db:seed && rails r 'GetMeetupEvents.new.call'"
+  },
+  "env":{
+    "LANG":{
+      "required":true
+    },
+    "MEETUP_API_KEY":{
+      "required":true
+    },
+    "RACK_ENV":{
+      "required":true
+    },
+    "RAILS_ENV":{
+      "required":true
+    },
+    "RAILS_SERVE_STATIC_FILES":{
+      "required":true
+    },
+    "SECRET_KEY_BASE":{
+      "required":true
+    }
+  },
+  "addons":[
+    "heroku-postgresql"
+  ]
+}
