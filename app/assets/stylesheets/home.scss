@@ -4,13 +4,29 @@
 
 body {
   font-family: 'Helvetica';
-
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
 }
 
+header {
+  background: url(image-path('rubyrails.png')) no-repeat center;
+  margin: 0 0 2.5% 0;
+  padding: 10%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.2rem;
+  text-shadow: 1px 1px #FFF, -2px -3px 40px #FFF, 2px 3px 10px #FFF;
+}
 
 .navigation-link {
   margin: 7px;
+}
+
+.navigation-link a:hover {
+  color: #99F;
 }
 
 .upcoming {
